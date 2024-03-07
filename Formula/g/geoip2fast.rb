@@ -1,9 +1,12 @@
 class Geoip2fast < Formula
+  include Language::Python::Virtualenv
+
   desc "GeoIP2 country/ASN lookup tool"
   homepage "https://github.com/rabuchaim/geoip2fast"
   url "https://files.pythonhosted.org/packages/eb/34/6d91d8165b2d717736360c65a7822ccb025bca4cd0a1385982c49ce73b9e/geoip2fast-1.2.1.tar.gz"
   sha256 "75bb4cd4931c245c5aaecdac7e2d2a350689e1dba4a1a5371eef92263995adb2"
   license "MIT"
+  revision 1
   head "https://github.com/rabuchaim/geoip2fast.git", branch: "main"
 
   bottle do
@@ -16,15 +19,15 @@ class Geoip2fast < Formula
     sha256 cellar: :any_skip_relocation, x86_64_linux:   "0402ff566f44c1f6f63c18bfeaae6410cd8716786f508c8caf0d331c5e2757e3"
   end
 
-  depends_on "python-setuptools" => :build
   depends_on "python@3.12"
 
-  def python3
-    "python3.12"
+  resource "setuptools" do
+    url "https://files.pythonhosted.org/packages/c8/1f/e026746e5885a83e1af99002ae63650b7c577af5c424d4c27edcf729ab44/setuptools-69.1.1.tar.gz"
+    sha256 "5c0806c7d9af348e6dd3777b4f4dbb42c7ad85b190104837488eab9a7c945cf8"
   end
 
   def install
-    system python3, "-m", "pip", "install", *std_pip_args, "."
+    virtualenv_install_with_resources
   end
 
   test do

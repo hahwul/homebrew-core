@@ -290,6 +290,9 @@
   "gcalcli": {
     "exclude_packages": ["certifi"]
   },
+  "geoip2fast": {
+    "extra_packages": ["setuptools"]
+  },
   "ggshield": {
     "exclude_packages": ["certifi", "cryptography"]
   },
