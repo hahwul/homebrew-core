@@ -301,6 +301,9 @@
     "exclude_packages": ["certifi", "cffi", "cryptography", "keyring", "six"],
     "extra_packages": ["pyobjc-framework-localauthentication"]
   },
+  "git-imerge": {
+    "extra_packages": ["setuptools"]
+  },
   "git-review": {
     "exclude_packages": ["certifi"]
   },
