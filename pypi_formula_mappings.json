@@ -284,6 +284,9 @@
   "flit": {
     "exclude_packages": ["certifi", "docutils", "flit-core"]
   },
+  "fypp": {
+    "extra_packages": ["setuptools"]
+  },
   "gallery-dl": {
     "exclude_packages": ["certifi"]
   },
