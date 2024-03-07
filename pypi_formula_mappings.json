@@ -271,6 +271,9 @@
     "extra_packages": ["decorator"],
     "exclude_packages": ["cryptography"]
   },
+  "fades": {
+    "extra_packages": ["setuptools"]
+  },
   "fava": {
     "exclude_packages": ["certifi"]
   },

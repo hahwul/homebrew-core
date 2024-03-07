@@ -1,9 +1,12 @@
 class Fades < Formula
+  include Language::Python::Virtualenv
+
   desc "Automatically handle virtualenvs for python scripts"
   homepage "https://fades.readthedocs.io/"
   url "https://files.pythonhosted.org/packages/8b/e8/87a44f1c33c41d1ad6ee6c0b87e957bf47150eb12e9f62cc90fdb6bf8669/fades-9.0.2.tar.gz"
   sha256 "4a2212f48c4c377bbe4da376c4459fe2d79aea2e813f0cb60d9b9fdf43d205cc"
   license "GPL-3.0-only"
+  revision 1
   head "https://github.com/PyAr/fades.git", branch: "master"
 
   bottle do
@@ -17,14 +20,24 @@ class Fades < Formula
     sha256 cellar: :any_skip_relocation, x86_64_linux:   "a94986ec051694e5472114067a7fd4cb4b764aebd0a3b84a709b25443d2498f5"
   end
 
-  depends_on "python-setuptools"
   depends_on "python@3.12"
+
+  resource "setuptools" do
+    url "https://files.pythonhosted.org/packages/c8/1f/e026746e5885a83e1af99002ae63650b7c577af5c424d4c27edcf729ab44/setuptools-69.1.1.tar.gz"
+    sha256 "5c0806c7d9af348e6dd3777b4f4dbb42c7ad85b190104837488eab9a7c945cf8"
+  end
 
   def python3
     which("python3.12")
   end
 
   def install
+    venv_root = buildpath/"venv"
+    site_packages = Language::Python.site_packages(python3)
+    ENV.prepend_create_path "PYTHONPATH", venv_root/site_packages
+    venv = virtualenv_create(venv_root, python3)
+    venv.pip_install resource("setuptools")
+
     system python3, "-m", "pip", "install", *std_pip_args, "."
 
     man1.install buildpath/"man/fades.1"
