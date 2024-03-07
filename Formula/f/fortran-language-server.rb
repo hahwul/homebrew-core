@@ -1,9 +1,12 @@
 class FortranLanguageServer < Formula
+  include Language::Python::Virtualenv
+
   desc "Language Server for Fortran"
   homepage "https://github.com/hansec/fortran-language-server"
   url "https://files.pythonhosted.org/packages/72/46/eb2c733e920a33409906aa145bde93b015f7f77c9bb8bdf65faa8c823998/fortran-language-server-1.12.0.tar.gz"
   sha256 "ec3921ef23d7e2b50b9337c9171838ed8c6b09ac6e1e4fa4dd33883474bd4f90"
   license "MIT"
+  revision 1
   head "https://github.com/hansec/fortran-language-server.git", branch: "master"
 
   bottle do
@@ -17,17 +20,17 @@ class FortranLanguageServer < Formula
     sha256 cellar: :any_skip_relocation, x86_64_linux:   "2e62186facb38b3fe9430b8b8890d47364eacba02947b85c41c62e9f707cb6b7"
   end
 
-  depends_on "python-setuptools" => :build
   depends_on "python@3.12"
 
   conflicts_with "fortls", because: "both install `fortls` binaries"
 
-  def python3
-    "python3.12"
+  resource "setuptools" do
+    url "https://files.pythonhosted.org/packages/c8/1f/e026746e5885a83e1af99002ae63650b7c577af5c424d4c27edcf729ab44/setuptools-69.1.1.tar.gz"
+    sha256 "5c0806c7d9af348e6dd3777b4f4dbb42c7ad85b190104837488eab9a7c945cf8"
   end
 
   def install
-    system python3, "-m", "pip", "install", *std_pip_args, "."
+    virtualenv_install_with_resources
   end
 
   test do

@@ -284,6 +284,9 @@
   "flit": {
     "exclude_packages": ["certifi", "docutils", "flit-core"]
   },
+  "fortran-language-server": {
+    "extra_packages": ["setuptools"]
+  },
   "gallery-dl": {
     "exclude_packages": ["certifi"]
   },
