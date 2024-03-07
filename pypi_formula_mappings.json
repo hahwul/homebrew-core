@@ -254,6 +254,9 @@
   "dxpy": {
     "exclude_packages": ["cryptography", "certifi"]
   },
+  "dynaconf": {
+    "extra_packages": ["setuptools"]
+  },
   "enex2notion": {
     "exclude_packages": ["certifi", "lxml", "PyMuPDF", "six"]
   },

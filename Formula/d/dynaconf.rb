@@ -1,9 +1,12 @@
 class Dynaconf < Formula
+  include Language::Python::Virtualenv
+
   desc "Configuration Management for Python"
   homepage "https://www.dynaconf.com/"
   url "https://files.pythonhosted.org/packages/fc/24/23ffca4bfb74ee9ddc0a3b1fbae401a6ee3c02700ec457ddceffffce1ad9/dynaconf-3.2.4.tar.gz"
   sha256 "2e6adebaa587f4df9241a16a4bec3fda521154d26b15f3258fde753a592831b6"
   license "MIT"
+  revision 1
 
   bottle do
     rebuild 1
@@ -16,15 +19,15 @@ class Dynaconf < Formula
     sha256 cellar: :any_skip_relocation, x86_64_linux:   "678f2af6fbd07b7de707d1deb8abef0a6bf918a229d3315fd4afd96034e418c8"
   end
 
-  depends_on "python-setuptools" => :build
   depends_on "python@3.12"
 
-  def python3
-    "python3.12"
+  resource "setuptools" do
+    url "https://files.pythonhosted.org/packages/c8/1f/e026746e5885a83e1af99002ae63650b7c577af5c424d4c27edcf729ab44/setuptools-69.1.1.tar.gz"
+    sha256 "5c0806c7d9af348e6dd3777b4f4dbb42c7ad85b190104837488eab9a7c945cf8"
   end
 
   def install
-    system python3, "-m", "pip", "install", *std_pip_args, "."
+    virtualenv_install_with_resources
   end
 
   test do
