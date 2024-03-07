@@ -51,6 +51,9 @@
   "asciidoc": {
     "extra_packages": ["setuptools"]
   },
+  "asciinema": {
+    "extra_packages": ["setuptools"]
+  },
   "astrometry-net": {
     "exclude_packages": ["numpy"],
     "extra_packages": ["fitsio"]
