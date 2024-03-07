@@ -304,6 +304,9 @@
   "git-review": {
     "exclude_packages": ["certifi"]
   },
+  "git-revise": {
+    "extra_packages": ["setuptools"]
+  },
   "gitless": {
     "exclude_packages": ["pygit2"]
   },
