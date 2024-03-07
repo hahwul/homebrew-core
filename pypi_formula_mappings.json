@@ -214,6 +214,9 @@
     "exclude_packages": ["certifi"]
   },
   "diffoscope": "diffoscope[cmdline]",
+  "djhtml": {
+    "extra_packages": ["setuptools"]
+  },
   "dnsrobocert": {
     "exclude_packages": ["certifi", "cryptography"]
   },
