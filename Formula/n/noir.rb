@@ -27,6 +27,9 @@ class Noir < Formula
     system "shards", "install"
     system "shards", "build", "--release", "--no-debug"
     bin.install "bin/noir"
+
+    generate_completions_from_executable(bin/"noir", shell_parameter_format: "--generate-completion=",
+                                                     shells:                 [:bash, :zsh, :fish])
   end
 
   test do
